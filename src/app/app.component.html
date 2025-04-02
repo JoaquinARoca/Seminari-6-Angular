@@ -1,9 +1,11 @@
-@if(loggedin)
-{
+<ng-container *ngIf="loggedin; else authTemplate">
     <app-usuario></app-usuario>
-}
-@else  {
-    <app-login (exportLoggedIn)="getLoggedIn($event)"></app-login>
-}
-
-<router-outlet />
+  </ng-container>
+  
+  <ng-template #authTemplate>
+    <app-register></app-register>
+    <app-login (exportLoggedIn)="setLoggedIn($event)"></app-login>
+  </ng-template>
+  
+  <router-outlet></router-outlet>
+  
